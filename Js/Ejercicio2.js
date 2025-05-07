@@ -16,27 +16,51 @@
 // volver a mostrar la descripción del estado 
 // de la cuenta.
 
-const cuenta = {
-  titular: "Alex",
-  saldo: 0,
+class Cuenta {
+  #titular
+  #saldo
+  constructor(titularParam) {
+    this.#titular = titularParam;
+    this.#saldo = 0;
+  }
+
+  // Get y Set para Titular
+  get getTitular () {
+    return this.#titular;
+  }
+
+  set setTitular (nuevoTitular) {
+    this.#titular = nuevoTitular;
+  }
   
-  ingresar: (cantidad) => {
-    this.saldo = this.saldo + cantidad
-    console.log(this.saldo)
-  },
+  // Get y Set para Saldo
+  get getSaldo () {
+    return this.#saldo;
+  }
 
-  extraer: (cantidad) => {
-    this.saldo = this.saldo - cantidad
-    console.log(this.saldo)
-  },
+  set setSaldo (nuevoSaldo) {
+    this.#saldo = nuevoSaldo;
+  }
 
-  informar: () => {
-    document.writeln("Estado de la cuenta: <br>");
-    document.writeln(`Titular: ${this.titular} <br>`);
-    document.writeln("Saldo actual: ", this.saldo, "<br>");
-  },
+  // Metodos
+  mostrarDatos () {
+    console.log(`Titular: ${this.#titular}, Saldo: ${this.#saldo}`);
+  }
+  depositar () {
+    const deposito =  parseInt(prompt("Ingrese un monto a depositar: "));
+    alex.setSaldo = alex.getSaldo + deposito
+    alert(`Se ha depositado: ${deposito}. Su saldo actual es de: ${alex.getSaldo}`);
+  }
+  
+  retirar () {
+    const retiro =  parseInt(prompt("Ingrese un monto a retirar: "));
+    alex.setSaldo = alex.getSaldo - retiro
+    alert(`Se ha retirado: ${retiro}. Su saldo actual es de: ${alex.getSaldo}`);
+  }
 }
 
-cuenta.ingresar(1000);
-cuenta.extraer(500);
-cuenta.informar();
+const alex = new Cuenta("Alex");
+alex.mostrarDatos();
+alex.depositar();
+alex.retirar();
+alex.mostrarDatos();
